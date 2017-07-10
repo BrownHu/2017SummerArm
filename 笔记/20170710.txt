@@ -1,0 +1,86 @@
+邵工
+
+上课时间：8:30 -11:30
+		  14:00 - 17:30
+	
+一、概述
+1.嵌入式概述
+2.Cortex-M3芯片介绍
+3.Keil 软件的安装以及Cortex-M3新建工程
+
+二、讲解
+1.嵌入式概述
+1）嵌入式概述
+	嵌入式全称嵌入式计算机系统，和台式机、笔记本一样都是计算机，但两者之间存在区别：
+	
+		嵌入式系统：    专用的、功能有限
+		PC/笔记本电脑： 通用的、用途广泛
+	
+2）嵌入式单片机和PC电脑的区别
+      PC电脑          单片机
+	   CPU			   内核
+	   内存			   RAM
+	   硬盘            ROM
+	 鼠标、键盘		   GPIO
+	 
+	
+3）单片机内核
+	①51内核		STC系列
+	②arm内核       STM32
+
+4）ARM微处理器的应用领域
+①工业控制领域：机械手臂、电机控制
+②无线通讯领域：无线通话、远程控制
+③网络应用：路由器、交换机
+④消费电子产品：手机、平板、游戏机
+⑤成像和安全产品：数码相机、门禁系统
+
+4）ARM微控制器系列
+Cortex系列：
+	Cortex-A: 多媒体、消费电子
+	Cortex-R: 军工领域
+	Cortex-M: 工业控制
+
+2.Cortex-M3芯片介绍
+1）Cortex-M系列芯片分类
+
+	Cortex-M0：低功耗产品
+	Cortex-M3：性能全面、覆盖大多数应用领域
+	Cortex-M4：电源管理、电机控制、音频
+
+我们开发板使用的芯片：STM32F103ZET6  144脚 Cortex-M3内核
+
+	
+3.Keil 软件的安装以及Cortex-M3新建工程
+
+①Keil软件安装
+	1、MDK keil、 芯片包（Downloade\Keil.STM32F1xx_DFP.1.1.0.pack
+	2、ST-Link驱动（ST-LINK驱动\根据系统版本进行安装
+	3、串口驱动（CH340_CH341\ch341ser.exe
+	
+②Cortex-M3新建 Keil工程
+	1、新建工程文件夹，用于存放工程文件
+	2、在工程文件夹新建 CMSIS 和 USER 文件夹，分别用于存放内核文件及用户编写的代码
+	3、再在 USER 文件夹下新建 inc 和 src 文件夹,分别用于存放头文件文件及源文件
+从固件库复制内核文件到CMSIS文件夹（共6个）
+	4、\参考资料\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\CoreSupport下的
+		core_cm3.c和 core_cm3.h
+	5、\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x
+		stm32f10x.h、system_stm32f10x.c 和 system_stm32f10x.h
+	6、启动文件： 固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm
+		startup_stm32f10x_hd.s
+Keil新建工程	
+	7、在 Keil 中新建工程，保存到刚刚新建的工程文件夹中
+	8、在芯片选择窗口选择 STM32F103ZE
+	9、点击“品字”按钮，打开工程管理界面，新建两个组：CMSIS和USER，对应工程文件夹
+	10、在 CMSIS 组中添加三个文件，两个.c文件和一个.文件
+	11、新建用户源文件 main.c，保存到 USER\src，并添加到工程中的 USER 组
+配置Keil工程
+	12、点击“魔术棒”按钮，在 Output 中勾选 Create HEX File
+	13、在 C/C++ 中添加 STM32F10x_HD 宏
+	14、在 C/C++ 中添加头文件路径 .\CMSIS 和 .\USER\inc
+配置下载器
+	15、在 Debug 中选择使用 ST-Link Debugger
+	16、点击 setting，在 Flash Downloade 中勾选 Reset and Run
+	17、点编译按钮编译程序，没有错误后点击下载按钮下载程序到开发板
+	
